@@ -1,119 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Haven - Buy and Rent Books</title>
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="theme.css" />
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <nav>
-        <div class="logo">BookHaven</div>
+      <div class="logo">BookHaven</div>
 
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search for books, authors, or genres...">
-        </div>
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          placeholder="Search for books, authors, or genres..."
+        />
+      </div>
 
-        <div class="nav-actions">
-            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
-            <a href="signin.html"><i class="fas fa-user"></i> My Account</a>
-        </div>
+      <div class="nav-actions">
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+        <a href="signin.html"><i class="fas fa-user"></i> My Account</a>
+      </div>
     </nav>
 
     <main class="container main-content">
-        <div class="grid-header">
-            <h2>Discover Books</h2>
-            <div class="filters">
-                <span style="color: var(--secondary-color); font-size: 0.9rem;">Filter by: Newest</span>
-            </div>
+      <div class="grid-header">
+        <h2>Discover Books</h2>
+        <div class="filters">
+          <span style="color: var(--secondary-color); font-size: 0.9rem"
+            >Filter by: Newest</span
+          >
         </div>
+      </div>
 
-        <div class="book-grid">
-            <!-- Book Card 1 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>The Great Gatsby</h3>
-                    <p class="book-author">F. Scott Fitzgerald</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$12.99</span>
-                    <span class="rent-tag">Rent $2.99</span>
-                </div>
+      <div class="book-grid">
+        <!-- Book Card 1 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>The Great Gatsby</h3>
+              <p class="book-author">F. Scott Fitzgerald</p>
             </div>
+            <div class="book-footer">
+              <span class="price">$12.99</span>
+              <span class="rent-tag">Rent $2.99</span>
+            </div>
+          </div>
+        </a>
+        <!-- Book Card 2 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>1984</h3>
+              <p class="book-author">George Orwell</p>
+            </div>
+            <div class="book-footer">
+              <span class="price">$10.50</span>
+              <span class="rent-tag">Rent $1.99</span>
+            </div>
+          </div>
+        </a>
 
-            <!-- Book Card 2 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>1984</h3>
-                    <p class="book-author">George Orwell</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$10.50</span>
-                    <span class="rent-tag">Rent $1.99</span>
-                </div>
+        <!-- Book Card 3 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>Atomic Habits</h3>
+              <p class="book-author">James Clear</p>
             </div>
+            <div class="book-footer">
+              <span class="price">$18.00</span>
+              <span class="rent-tag">Rent $4.50</span>
+            </div>
+          </div>
+        </a>
 
-            <!-- Book Card 3 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>Atomic Habits</h3>
-                    <p class="book-author">James Clear</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$18.00</span>
-                    <span class="rent-tag">Rent $4.50</span>
-                </div>
+        <!-- Book Card 4 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>Quiet</h3>
+              <p class="book-author">Susan Cain</p>
             </div>
+            <div class="book-footer">
+              <span class="price">$14.25</span>
+              <span class="rent-tag">Rent $3.00</span>
+            </div>
+          </div>
+        </a>
 
-            <!-- Book Card 4 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>Quiet</h3>
-                    <p class="book-author">Susan Cain</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$14.25</span>
-                    <span class="rent-tag">Rent $3.00</span>
-                </div>
+        <!-- Book Card 5 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>Sapiens</h3>
+              <p class="book-author">Yuval Noah Harari</p>
             </div>
+            <div class="book-footer">
+              <span class="price">$22.00</span>
+              <span class="rent-tag">Rent $5.50</span>
+            </div>
+          </div>
+        </a>
 
-            <!-- Book Card 5 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>Sapiens</h3>
-                    <p class="book-author">Yuval Noah Harari</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$22.00</span>
-                    <span class="rent-tag">Rent $5.50</span>
-                </div>
+        <!-- Book Card 6 -->
+        <a href="/UI/book.html">
+          <div class="book-card">
+            <div class="book-img">Book Cover</div>
+            <div class="book-info">
+              <h3>Educated</h3>
+              <p class="book-author">Tara Westover</p>
             </div>
-
-            <!-- Book Card 6 -->
-            <div class="book-card">
-                <div class="book-img">Book Cover</div>
-                <div class="book-info">
-                    <h3>Educated</h3>
-                    <p class="book-author">Tara Westover</p>
-                </div>
-                <div class="book-footer">
-                    <span class="price">$15.99</span>
-                    <span class="rent-tag">Rent $3.50</span>
-                </div>
+            <div class="book-footer">
+              <span class="price">$15.99</span>
+              <span class="rent-tag">Rent $3.50</span>
             </div>
-        </div>
+          </div>
+        </a>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>

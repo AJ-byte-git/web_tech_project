@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Book Haven</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><a href="index.html">BookHaven</a></div>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for books, authors...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="sell.html"
+                style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i
+                    class="fas fa-plus"></i> Sell</a>
+            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+            <a href="account.html" style="color: var(--accent-color);"><i class="fas fa-user"></i> My Account</a>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <h1>My Account</h1>
+
+        <div class="account-layout">
+            <aside class="account-sidebar">
+                <a href="#" class="sidebar-link active"><i class="fas fa-user-circle" style="margin-right: 10px;"></i>
+                    Profile Info</a>
+                <a href="orders.html" class="sidebar-link"><i class="fas fa-shopping-bag"
+                        style="margin-right: 10px;"></i> My Orders</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Saved
+                    Addresses</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-heart" style="margin-right: 10px;"></i> Wishlist</a>
+                <a href="sell.html" class="sidebar-link"><i class="fas fa-plus-circle" style="margin-right: 10px;"></i>
+                    Sell a Book</a>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border-color);">
+                <a href="signin.html" class="sidebar-link" style="color: #e74c3c;"><i class="fas fa-sign-out-alt"
+                        style="margin-right: 10px;"></i> Logout</a>
+            </aside>
+
+            <section class="account-content">
+                <h3 style="margin-bottom: 30px;">Personal Information</h3>
+
+                <form action="#">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" value="Alex">
+                        </div>
+                        <div class="input-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" value="Johnson">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" value="alex.j@example.com">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" value="+1 (555) 000-0000">
+                    </div>
+
+                    <h3 style="margin: 40px 0 30px 0;">Security</h3>
+
+                    <div class="input-group">
+                        <label for="current-pass">Current Password</label>
+                        <input type="password" id="current-pass" placeholder="••••••••">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="new-pass">New Password</label>
+                            <input type="password" id="new-pass" placeholder="••••••••">
+                        </div>
+                        <div class="input-group">
+                            <label for="confirm-new-pass">Confirm New Password</label>
+                            <input type="password" id="confirm-new-pass" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="margin-top: 20px;">Save Changes</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

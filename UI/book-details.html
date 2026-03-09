@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Gatsby - Book Haven</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><a href="index.html">BookHaven</a></div>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for books, authors...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="sell.html"
+                style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i
+                    class="fas fa-plus"></i> Sell</a>
+            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+            <a href="account.html"><i class="fas fa-user"></i> My Account</a>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <ul
+            style="display: flex; gap: 10px; list-style: none; margin-bottom: 30px; font-size: 0.9rem; color: var(--secondary-color);">
+            <li><a href="index.html">Home</a></li>
+            <li>/</li>
+            <li>Classics</li>
+            <li>/</li>
+            <li style="color: var(--accent-color);">The Great Gatsby</li>
+        </ul>
+
+        <div class="details-container">
+            <div class="details-img">Book Cover Image</div>
+
+            <div class="details-info">
+                <h1>The Great Gatsby</h1>
+                <p class="details-author">by F. Scott Fitzgerald</p>
+
+                <div class="details-meta">
+                    <div class="meta-item">
+                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Rating</span>
+                        <strong>4.8 / 5.0</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Pages</span>
+                        <strong>180 Pages</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Language</span>
+                        <strong>English</strong>
+                    </div>
+                </div>
+
+                <div class="details-description">
+                    <h3 style="margin-bottom: 15px;">Synopsis</h3>
+                    <p>The Great Gatsby, F. Scott Fitzgerald's third book, stands as the supreme achievement of his
+                        career. This exemplary novel of the Jazz Age has been acclaimed by generations of readers. The
+                        story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of
+                        lavish parties on Long Island at a time when The New York Times noted "gin was the national
+                        drink and sex the national obsession," it is an exquisitely crafted tale of America in the
+                        1920s.</p>
+                </div>
+
+                <div class="details-actions">
+                    <button class="btn-primary" style="flex: 1; padding: 18px;"
+                        onclick="window.location.href='checkout.html'">Buy Now - $12.99</button>
+                    <button class="btn-primary" style="flex: 1; padding: 18px; background-color: var(--accent-color);"
+                        onclick="window.location.href='cart.html'">Rent - $2.99 /
+                        week</button>
+                    <button class="qty-btn" style="width: 60px; height: 60px;"><i class="far fa-heart"></i></button>
+                </div>
+
+                <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 15px;">Book Condition</h3>
+                    <p style="color: var(--secondary-color);">Condition: <strong>Like New</strong></p>
+                    <p style="color: var(--secondary-color);">Seller: <strong>John Doe</strong> (Verified Seller)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

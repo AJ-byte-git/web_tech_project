@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DinoList>
+	<Dinosaur period="Late Cretaceous">
+		<Name>Tyrannosaurus Rex</Name>
+		<Group>Carnosaur</Group>
+		<Range>
+			<Region>Europe</Region>
+			<Region>North America</Region>
+		</Range>
+		<PhysicalAttr>
+			<Length unit="feet">39</Length>
+			<Weight unit="tons">6</Weight>
+		</PhysicalAttr>
+	</Dinosaur>
+	<Dinosaur period="Early Jurassic">
+		<Name>Dilophosaurus</Name>
+		<Group>Coelurosaur</Group>
+		<Range>
+			<Region>Asia</Region>
+			<Region>North America</Region>
+		</Range>
+		<PhysicalAttr>
+			<Height unit="metres">3</Height>
+			<Length unit="metres">6</Length>
+			<Weight unit="tons">2</Weight>
+		</PhysicalAttr>
+	</Dinosaur>
+	<Dinosaur period="Late Jurassic">
+		<Name>Stegosaurus</Name>
+		<Group>Stegosaur</Group>
+		<Range>
+			<Region>Europe</Region>
+			<Region>Asia</Region>
+			<Region>North America</Region>
+		</Range>
+		<PhysicalAttr>
+			<Length unit="metres">9</Length>
+			<Weight unit="kgs">3100</Weight>
+		</PhysicalAttr>
+	</Dinosaur>
+</DinoList>

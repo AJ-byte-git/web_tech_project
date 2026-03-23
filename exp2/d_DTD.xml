@@ -1,0 +1,5 @@
+<!ELEMENT PhysicalAttr (Height?, Length?, Weight?)>
+<!ATTLIST Dinosaur period CDATA #IMPLIED>
+<!ATTLIST Height unit CDATA #REQUIRED>
+<!ATTLIST Length unit CDATA #REQUIRED>
+<!ATTLIST Weight unit CDATA #REQUIRED>

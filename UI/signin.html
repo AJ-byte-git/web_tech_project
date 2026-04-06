@@ -11,7 +11,10 @@
 <body>
     <div class="container">
         <div class="auth-card">
-            <div class="logo" style="margin-bottom: 20px;"><a href="index.html">BookHaven</a></div>
+            <div class="logo" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <a href="index.html">BookHaven</a>
+                <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+            </div>
             <h1>Welcome Back</h1>
             <p style="color: var(--secondary-color); margin-bottom: 30px;">Sign in to your account</p>
 
@@ -41,6 +44,11 @@
             </div>
         </div>
     </div>
+
+    <div id="toast-container"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="jquery-features.js"></script>
 </body>
 
 </html>

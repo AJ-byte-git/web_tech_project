@@ -56,22 +56,26 @@ const loadBooks = () => {
                 }
 
                 for (let i = 0; i < books.length; i++) {
-                    const title = books[i].getElementsByTagName('title')[0].textContent;
+                    const id     = books[i].getElementsByTagName('id')[0].textContent;
+                    const title  = books[i].getElementsByTagName('title')[0].textContent;
                     const author = books[i].getElementsByTagName('author')[0].textContent;
-                    const price = books[i].getElementsByTagName('price')[0].textContent;
-                    const rent = books[i].getElementsByTagName('rent_price')[0].textContent;
+                    const price  = books[i].getElementsByTagName('price')[0].textContent;
+                    const rentRaw = books[i].getElementsByTagName('rent_price')[0].textContent;
+                    const hasRent = rentRaw && rentRaw !== '';
 
                     const card = `
-                        <a href="book-details.html">
+                        <a href="book-details.html?id=${id}">
                             <div class="book-card">
-                                <div class="book-img">Book Cover</div>
+                                <div class="book-img" style="display:flex;align-items:center;justify-content:center;">
+                                    <i class="fas fa-book-open" style="font-size:2rem;opacity:0.3;"></i>
+                                </div>
                                 <div class="book-info">
                                     <h3>${title}</h3>
                                     <p class="book-author">${author}</p>
                                 </div>
                                 <div class="book-footer">
                                     <span class="price">$${price}</span>
-                                    <span class="rent-tag">Rent $${rent}</span>
+                                    ${hasRent ? `<span class="rent-tag">Rent $${rentRaw}</span>` : '<span class="rent-tag" style="opacity:0.4;">No Rent</span>'}
                                 </div>
                                 <div class="quick-add-btn"><i class="fas fa-cart-plus"></i></div>
                             </div>

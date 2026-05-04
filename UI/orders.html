@@ -5,33 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders - Book Haven</title>
+    <meta name="description" content="View your complete order history on Book Haven.">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .skeleton { background: linear-gradient(90deg, var(--border-color) 25%, var(--card-bg) 50%, var(--border-color) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 6px; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-row td { padding: 16px 12px; }
+        .skeleton-cell { height: 16px; border-radius: 6px; }
+
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; text-transform: capitalize; }
+        .status-completed { background: rgba(39,174,96,0.15); color: #27ae60; }
+        .status-pending   { background: rgba(241,196,15,0.15); color: #f1c40f; }
+        .status-cancelled { background: rgba(231,76,60,0.15);  color: #e74c3c; }
+
+        #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 14px 20px; border-radius: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); animation: slideIn 0.3s ease; }
+        .toast.error i { color: #e74c3c; } .toast.success i { color: var(--accent-color); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
 </head>
 
 <body>
+    <div id="toast-container"></div>
+
     <nav>
         <div class="logo"><a href="index.html">BookHaven</a></div>
-
         <div class="search-container">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search for books, authors...">
         </div>
-
         <div class="nav-actions">
-            <a href="sell.html"
-                style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i
-                    class="fas fa-plus"></i> Sell</a>
+            <a href="sell.html" style="color:var(--accent-color);border:1px solid var(--accent-color);padding:5px 15px;border-radius:20px;"><i class="fas fa-plus"></i> Sell</a>
             <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="orders.html" style="color: var(--accent-color);"><i class="fas fa-box"></i> My Orders</a>
+            <a href="orders.html" style="color:var(--accent-color);"><i class="fas fa-box"></i> My Orders</a>
             <a href="account.html"><i class="fas fa-user"></i> My Account</a>
         </div>
     </nav>
 
     <main class="container main-content">
         <h1>Order History</h1>
+        <p id="orders-meta" style="color:var(--secondary-color);margin-top:6px;font-size:0.9rem;">Loading your orders...</p>
 
-        <div class="order-history" style="margin-top: 30px;">
+        <div class="order-history" style="margin-top:30px;">
             <table class="data-table">
                 <thead>
                     <tr>
@@ -43,35 +59,105 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>#BH-9821</td>
-                        <td>Oct 12, 2023</td>
-                        <td>The Great Gatsby, Sapiens</td>
-                        <td>$34.99</td>
-                        <td><span class="status-badge status-delivered">Delivered</span></td>
-                        <td><a href="#" style="color: var(--accent-color);">View Details</a></td>
+                <tbody id="orders-tbody">
+                    <!-- Skeleton rows -->
+                    <tr class="skeleton-row">
+                        <td><div class="skeleton skeleton-cell" style="width:70px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:90px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:180px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:55px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:80px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:80px;"></div></td>
                     </tr>
-                    <tr>
-                        <td>#BH-9754</td>
-                        <td>Oct 08, 2023</td>
-                        <td>Educated</td>
-                        <td>$15.99</td>
-                        <td><span class="status-badge status-shipped">Shipped</span></td>
-                        <td><a href="#" style="color: var(--accent-color);">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>#BH-9642</td>
-                        <td>Sep 30, 2023</td>
-                        <td>1984, Atomic Habits</td>
-                        <td>$28.50</td>
-                        <td><span class="status-badge status-delivered">Delivered</span></td>
-                        <td><a href="#" style="color: var(--accent-color);">View Details</a></td>
+                    <tr class="skeleton-row">
+                        <td><div class="skeleton skeleton-cell" style="width:70px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:90px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:160px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:55px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:80px;"></div></td>
+                        <td><div class="skeleton skeleton-cell" style="width:80px;"></div></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
+
+    <script>
+        const toast = (msg, type = 'success') => {
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${msg}`;
+            document.getElementById('toast-container').appendChild(t);
+            setTimeout(() => t.remove(), 3500);
+        };
+
+        function loadOrders() {
+            const userId = 1; // Demo: replace with session user_id
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `../api/get_orders.php?user_id=${userId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState !== 4) return;
+                const tbody = document.getElementById('orders-tbody');
+                const meta  = document.getElementById('orders-meta');
+
+                if (this.status === 200) {
+                    const xml = this.responseXML;
+                    if (!xml) {
+                        tbody.innerHTML = '<tr><td colspan="6" class="error-state">Failed to parse server response.</td></tr>';
+                        return;
+                    }
+
+                    const errNode = xml.getElementsByTagName('error')[0];
+                    if (errNode) {
+                        tbody.innerHTML = `<tr><td colspan="6" class="error-state">Error: ${errNode.textContent}</td></tr>`;
+                        toast(errNode.textContent, 'error');
+                        return;
+                    }
+
+                    const orders = xml.getElementsByTagName('order');
+
+                    if (orders.length === 0) {
+                        meta.textContent = '';
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="6" style="text-align:center;padding:60px 20px;">
+                                    <i class="fas fa-box-open" style="font-size:2.5rem;opacity:0.3;display:block;margin-bottom:16px;"></i>
+                                    <p style="color:var(--secondary-color);">No orders yet. <a href="book.html" style="color:var(--accent-color);">Start shopping!</a></p>
+                                </td>
+                            </tr>`;
+                        return;
+                    }
+
+                    meta.textContent = `${orders.length} order${orders.length > 1 ? 's' : ''} found`;
+
+                    let rows = '';
+                    for (let i = 0; i < orders.length; i++) {
+                        const g = (tag) => orders[i].getElementsByTagName(tag)[0]?.textContent || '';
+                        const status = g('status');
+                        const statusClass = `status-${status}`;
+
+                        rows += `
+                            <tr>
+                                <td><strong>#BH-${g('id').padStart(4, '0')}</strong></td>
+                                <td>${g('order_date')}</td>
+                                <td style="max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${g('books')}">${g('books')}</td>
+                                <td><strong>$${g('total')}</strong></td>
+                                <td><span class="status-badge ${statusClass}">${status}</span></td>
+                                <td><a href="#" style="color:var(--accent-color);">View Details</a></td>
+                            </tr>`;
+                    }
+                    tbody.innerHTML = rows;
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="6" class="error-state">Failed to connect to server.</td></tr>';
+                    toast('Server connection failed', 'error');
+                }
+            };
+            xhr.send();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadOrders);
+    </script>
 </body>
 
 </html>

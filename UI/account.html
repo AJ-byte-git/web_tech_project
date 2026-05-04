@@ -5,26 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account - Book Haven</title>
+    <meta name="description" content="Manage your Book Haven account, profile, and security settings.">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .skeleton { background: linear-gradient(90deg, var(--border-color) 25%, var(--card-bg) 50%, var(--border-color) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 6px; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-input { height: 44px; border-radius: 8px; margin-bottom: 20px; }
+        .skeleton-label { height: 13px; width: 100px; border-radius: 4px; margin-bottom: 8px; }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 34px; }
+        .stat-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px 20px; text-align: center; }
+        .stat-item .stat-number { font-size: 2rem; font-weight: 700; color: var(--accent-color); display: block; }
+        .stat-item .stat-label  { font-size: 0.82rem; color: var(--secondary-color); margin-top: 4px; display: block; }
+
+        .role-badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; text-transform: capitalize; }
+        .role-admin    { background: rgba(155,89,182,0.15); color: #9b59b6; }
+        .role-customer { background: rgba(52,152,219,0.15); color: #3498db; }
+
+        .member-tag { font-size: 0.82rem; color: var(--secondary-color); margin-top: 6px; }
+
+        #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 14px 20px; border-radius: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); animation: slideIn 0.3s ease; }
+        .toast.error i { color: #e74c3c; } .toast.success i { color: var(--accent-color); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
 </head>
 
 <body>
+    <div id="toast-container"></div>
+
     <nav>
         <div class="logo"><a href="index.html">BookHaven</a></div>
-
         <div class="search-container">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search for books, authors...">
         </div>
-
         <div class="nav-actions">
-            <a href="sell.html"
-                style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i
-                    class="fas fa-plus"></i> Sell</a>
+            <a href="sell.html" style="color:var(--accent-color);border:1px solid var(--accent-color);padding:5px 15px;border-radius:20px;"><i class="fas fa-plus"></i> Sell</a>
             <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
-            <a href="account.html" style="color: var(--accent-color);"><i class="fas fa-user"></i> My Account</a>
+            <a href="account.html" style="color:var(--accent-color);"><i class="fas fa-user"></i> My Account</a>
         </div>
     </nav>
 
@@ -32,47 +63,60 @@
         <h1>My Account</h1>
 
         <div class="account-layout">
+            <!-- Sidebar -->
             <aside class="account-sidebar">
-                <a href="#" class="sidebar-link active"><i class="fas fa-user-circle" style="margin-right: 10px;"></i>
-                    Profile Info</a>
-                <a href="orders.html" class="sidebar-link"><i class="fas fa-shopping-bag"
-                        style="margin-right: 10px;"></i> My Orders</a>
-                <a href="#" class="sidebar-link"><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Saved
-                    Addresses</a>
-                <a href="#" class="sidebar-link"><i class="fas fa-heart" style="margin-right: 10px;"></i> Wishlist</a>
-                <a href="sell.html" class="sidebar-link"><i class="fas fa-plus-circle" style="margin-right: 10px;"></i>
-                    Sell a Book</a>
-                <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border-color);">
-                <a href="signin.html" class="sidebar-link" style="color: #e74c3c;"><i class="fas fa-sign-out-alt"
-                        style="margin-right: 10px;"></i> Logout</a>
+                <a href="#" class="sidebar-link active"><i class="fas fa-user-circle" style="margin-right:10px;"></i>Profile Info</a>
+                <a href="orders.html" class="sidebar-link"><i class="fas fa-shopping-bag" style="margin-right:10px;"></i>My Orders</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-map-marker-alt" style="margin-right:10px;"></i>Saved Addresses</a>
+                <a href="#" class="sidebar-link"><i class="fas fa-heart" style="margin-right:10px;"></i>Wishlist</a>
+                <a href="sell.html" class="sidebar-link"><i class="fas fa-plus-circle" style="margin-right:10px;"></i>Sell a Book</a>
+                <hr style="margin:20px 0;border:none;border-top:1px solid var(--border-color);">
+                <a href="signin.html" class="sidebar-link" style="color:#e74c3c;"><i class="fas fa-sign-out-alt" style="margin-right:10px;"></i>Logout</a>
             </aside>
 
+            <!-- Main content -->
             <section class="account-content">
-                <h3 style="margin-bottom: 30px;">Personal Information</h3>
 
-                <form action="#">
+                <!-- Stats grid (populated by XML) -->
+                <div class="stat-grid" id="stats-grid">
+                    <div class="stat-item"><span class="stat-number skeleton" style="height:36px;width:60px;display:inline-block;border-radius:6px;"></span><span class="stat-label">Total Orders</span></div>
+                    <div class="stat-item"><span class="stat-number skeleton" style="height:36px;width:60px;display:inline-block;border-radius:6px;"></span><span class="stat-label">Active Rentals</span></div>
+                    <div class="stat-item"><span class="stat-number skeleton" style="height:36px;width:60px;display:inline-block;border-radius:6px;"></span><span class="stat-label">Books Sold</span></div>
+                </div>
+
+                <h3 style="margin-bottom:30px;">Personal Information</h3>
+
+                <!-- Profile form (populated by XML) -->
+                <form id="profile-form" action="#">
                     <div class="form-row">
                         <div class="input-group">
                             <label for="fname">First Name</label>
-                            <input type="text" id="fname" value="Alex">
+                            <input type="text" id="fname" value="" placeholder="Loading...">
                         </div>
                         <div class="input-group">
                             <label for="lname">Last Name</label>
-                            <input type="text" id="lname" value="Johnson">
+                            <input type="text" id="lname" value="" placeholder="Loading...">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" value="alex.j@example.com">
+                        <input type="email" id="email" value="" placeholder="Loading...">
                     </div>
 
                     <div class="input-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" value="+1 (555) 000-0000">
+                        <input type="tel" id="phone" value="" placeholder="Loading...">
                     </div>
 
-                    <h3 style="margin: 40px 0 30px 0;">Security</h3>
+                    <div class="input-group" style="margin-top:6px;">
+                        <label>Role</label>
+                        <p id="role-display" style="padding:10px 0;font-size:0.9rem;"><span class="skeleton" style="display:inline-block;height:24px;width:80px;border-radius:20px;"></span></p>
+                    </div>
+
+                    <p class="member-tag" id="member-since"></p>
+
+                    <h3 style="margin:40px 0 30px 0;">Security</h3>
 
                     <div class="input-group">
                         <label for="current-pass">Current Password</label>
@@ -90,11 +134,94 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-primary" style="margin-top: 20px;">Save Changes</button>
+                    <button type="submit" class="btn-primary" style="margin-top:20px;" id="save-btn">Save Changes</button>
                 </form>
             </section>
         </div>
     </main>
+
+    <script>
+        const toast = (msg, type = 'success') => {
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${msg}`;
+            document.getElementById('toast-container').appendChild(t);
+            setTimeout(() => t.remove(), 3500);
+        };
+
+        function loadUserProfile() {
+            const userId = 1; // Demo: replace with session user_id
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `../api/get_user.php?user_id=${userId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState !== 4) return;
+
+                if (this.status === 200) {
+                    const xml = this.responseXML;
+                    if (!xml) { toast('Failed to parse server response.', 'error'); return; }
+
+                    const errNode = xml.getElementsByTagName('error')[0];
+                    if (errNode) { toast(errNode.textContent, 'error'); return; }
+
+                    const g = (tag) => xml.getElementsByTagName(tag)[0]?.textContent || '';
+
+                    // Populate profile fields
+                    document.getElementById('fname').value = g('first_name');
+                    document.getElementById('lname').value = g('last_name');
+                    document.getElementById('email').value = g('email');
+                    document.getElementById('phone').value = g('phone');
+
+                    // Role badge
+                    const role = g('role');
+                    document.getElementById('role-display').innerHTML =
+                        `<span class="role-badge role-${role}">${role.charAt(0).toUpperCase() + role.slice(1)}</span>`;
+
+                    // Member since
+                    const memberSince = g('member_since');
+                    if (memberSince) {
+                        document.getElementById('member-since').innerHTML =
+                            `<i class="fas fa-calendar-alt" style="margin-right:6px;opacity:0.5;"></i>Member since ${memberSince}`;
+                    }
+
+                    // Update page title
+                    document.title = `${g('first_name')} ${g('last_name')} — My Account | Book Haven`;
+
+                    // Stats
+                    const statsEl = document.getElementById('stats-grid');
+                    const total_orders   = g('total_orders');
+                    const active_rentals = g('active_rentals');
+                    const books_sold     = g('books_sold');
+
+                    statsEl.innerHTML = `
+                        <div class="stat-item">
+                            <span class="stat-number">${total_orders}</span>
+                            <span class="stat-label"><i class="fas fa-shopping-bag" style="margin-right:4px;opacity:0.6;"></i>Total Orders</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${active_rentals}</span>
+                            <span class="stat-label"><i class="fas fa-book-reader" style="margin-right:4px;opacity:0.6;"></i>Active Rentals</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${books_sold}</span>
+                            <span class="stat-label"><i class="fas fa-store" style="margin-right:4px;opacity:0.6;"></i>Books Sold</span>
+                        </div>
+                    `;
+                } else {
+                    toast('Server connection failed', 'error');
+                }
+            };
+            xhr.send();
+        }
+
+        // Save button feedback
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            toast('Profile updated successfully!', 'success');
+        });
+
+        document.addEventListener('DOMContentLoaded', loadUserProfile);
+    </script>
 </body>
 
 </html>

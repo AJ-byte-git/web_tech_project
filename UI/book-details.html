@@ -4,24 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Great Gatsby - Book Haven</title>
+    <title>Book Details - Book Haven</title>
+    <meta name="description" content="View detailed information about this book including price, rent, and condition.">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .skeleton {
+            background: linear-gradient(90deg, var(--border-color) 25%, var(--card-bg) 50%, var(--border-color) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: 8px;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .skeleton-img  { width: 100%; aspect-ratio: 3/4; border-radius: 12px; }
+        .skeleton-line { height: 18px; margin-bottom: 12px; }
+        .skeleton-line.short { width: 50%; }
+        .skeleton-line.tall  { height: 80px; }
+        .badge-used    { background: #e67e22; color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; margin-left: 10px; }
+        .badge-new     { background: var(--accent-color); color: #fff; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; margin-left: 10px; }
+        .stock-tag     { font-size: 0.85rem; color: var(--secondary-color); margin-top: 8px; }
+        .stock-tag.low { color: #e67e22; }
+        .rent-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        #toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 14px 20px; border-radius: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); animation: slideIn 0.3s ease; }
+        .toast.error i { color: #e74c3c; }
+        .toast.success i { color: var(--accent-color); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
 </head>
 
 <body>
+    <div id="toast-container"></div>
+
     <nav>
         <div class="logo"><a href="index.html">BookHaven</a></div>
-
         <div class="search-container">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search for books, authors...">
         </div>
-
         <div class="nav-actions">
-            <a href="sell.html"
-                style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i
-                    class="fas fa-plus"></i> Sell</a>
+            <a href="sell.html" style="color: var(--accent-color); border: 1px solid var(--accent-color); padding: 5px 15px; border-radius: 20px;"><i class="fas fa-plus"></i> Sell</a>
             <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
             <a href="account.html"><i class="fas fa-user"></i> My Account</a>
@@ -29,64 +51,144 @@
     </nav>
 
     <main class="container main-content">
-        <ul
-            style="display: flex; gap: 10px; list-style: none; margin-bottom: 30px; font-size: 0.9rem; color: var(--secondary-color);">
+        <!-- Breadcrumb -->
+        <ul id="breadcrumb" style="display:flex;gap:10px;list-style:none;margin-bottom:30px;font-size:0.9rem;color:var(--secondary-color);">
             <li><a href="index.html">Home</a></li>
             <li>/</li>
-            <li>Classics</li>
+            <li id="bc-category">...</li>
             <li>/</li>
-            <li style="color: var(--accent-color);">The Great Gatsby</li>
+            <li id="bc-title" style="color:var(--accent-color);">Loading...</li>
         </ul>
 
-        <div class="details-container">
-            <div class="details-img">Book Cover Image</div>
-
+        <div class="details-container" id="details-container">
+            <!-- Skeleton loader -->
+            <div class="skeleton skeleton-img"></div>
             <div class="details-info">
-                <h1>The Great Gatsby</h1>
-                <p class="details-author">by F. Scott Fitzgerald</p>
-
-                <div class="details-meta">
-                    <div class="meta-item">
-                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Rating</span>
-                        <strong>4.8 / 5.0</strong>
-                    </div>
-                    <div class="meta-item">
-                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Pages</span>
-                        <strong>180 Pages</strong>
-                    </div>
-                    <div class="meta-item">
-                        <span style="display: block; font-size: 0.8rem; color: var(--secondary-color);">Language</span>
-                        <strong>English</strong>
-                    </div>
-                </div>
-
-                <div class="details-description">
-                    <h3 style="margin-bottom: 15px;">Synopsis</h3>
-                    <p>The Great Gatsby, F. Scott Fitzgerald's third book, stands as the supreme achievement of his
-                        career. This exemplary novel of the Jazz Age has been acclaimed by generations of readers. The
-                        story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of
-                        lavish parties on Long Island at a time when The New York Times noted "gin was the national
-                        drink and sex the national obsession," it is an exquisitely crafted tale of America in the
-                        1920s.</p>
-                </div>
-
-                <div class="details-actions">
-                    <button class="btn-primary" style="flex: 1; padding: 18px;"
-                        onclick="window.location.href='checkout.html'">Buy Now - $12.99</button>
-                    <button class="btn-primary" style="flex: 1; padding: 18px; background-color: var(--accent-color);"
-                        onclick="window.location.href='cart.html'">Rent - $2.99 /
-                        week</button>
-                    <button class="qty-btn" style="width: 60px; height: 60px;"><i class="far fa-heart"></i></button>
-                </div>
-
-                <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
-                    <h3 style="margin-bottom: 15px;">Book Condition</h3>
-                    <p style="color: var(--secondary-color);">Condition: <strong>Like New</strong></p>
-                    <p style="color: var(--secondary-color);">Seller: <strong>John Doe</strong> (Verified Seller)</p>
-                </div>
+                <div class="skeleton skeleton-line" style="width:70%;height:36px;"></div>
+                <div class="skeleton skeleton-line short" style="margin-top:8px;"></div>
+                <div class="skeleton skeleton-line tall" style="margin-top:24px;"></div>
+                <div class="skeleton skeleton-line" style="margin-top:16px;width:40%;"></div>
             </div>
         </div>
     </main>
+
+    <script>
+        const toast = (msg, type = 'success') => {
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${msg}`;
+            document.getElementById('toast-container').appendChild(t);
+            setTimeout(() => t.remove(), 3500);
+        };
+
+        function getParam(key) {
+            return new URLSearchParams(window.location.search).get(key);
+        }
+
+        function loadBookDetail() {
+            const bookId = getParam('id') || 1;  // Default to id=1 for demo
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `../api/get_book_detail.php?id=${bookId}`, true);
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState !== 4) return;
+                const container = document.getElementById('details-container');
+
+                if (this.status === 200) {
+                    const xml = this.responseXML;
+                    if (!xml) {
+                        container.innerHTML = '<div class="error-state">Failed to parse server response.</div>';
+                        return;
+                    }
+
+                    const errNode = xml.getElementsByTagName('error')[0];
+                    if (errNode) {
+                        container.innerHTML = `<div class="error-state">Error: ${errNode.textContent}</div>`;
+                        toast(errNode.textContent, 'error');
+                        return;
+                    }
+
+                    const g = (tag) => xml.getElementsByTagName(tag)[0]?.textContent || '';
+
+                    const title       = g('title');
+                    const author      = g('author');
+                    const description = g('description');
+                    const category    = g('category');
+                    const price       = parseFloat(g('price')).toFixed(2);
+                    const rentRaw     = g('rent_price');
+                    const hasRent     = rentRaw !== '';
+                    const rent        = hasRent ? parseFloat(rentRaw).toFixed(2) : null;
+                    const qty         = parseInt(g('quantity'));
+                    const isUsed      = g('is_used') === 'true';
+                    const seller      = g('seller');
+
+                    // Update page title & breadcrumb
+                    document.title = `${title} - Book Haven`;
+                    document.getElementById('bc-category').textContent = category;
+                    document.getElementById('bc-title').textContent   = title;
+
+                    const stockHtml = qty === 0
+                        ? `<p class="stock-tag low"><i class="fas fa-times-circle"></i> Out of Stock</p>`
+                        : qty <= 3
+                            ? `<p class="stock-tag low"><i class="fas fa-exclamation-circle"></i> Only ${qty} left!</p>`
+                            : `<p class="stock-tag"><i class="fas fa-check-circle" style="color:var(--accent-color);"></i> In Stock (${qty} available)</p>`;
+
+                    container.innerHTML = `
+                        <div class="details-img" style="display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--secondary-color);">
+                            <i class="fas fa-book-open" style="font-size:3rem;opacity:0.4;"></i>
+                        </div>
+                        <div class="details-info">
+                            <h1>${title} <span class="${isUsed ? 'badge-used' : 'badge-new'}">${isUsed ? 'Used' : 'New'}</span></h1>
+                            <p class="details-author">by ${author}</p>
+                            ${stockHtml}
+                            <div class="details-meta">
+                                <div class="meta-item">
+                                    <span style="display:block;font-size:0.8rem;color:var(--secondary-color);">Category</span>
+                                    <strong>${category}</strong>
+                                </div>
+                                <div class="meta-item">
+                                    <span style="display:block;font-size:0.8rem;color:var(--secondary-color);">Sale Price</span>
+                                    <strong>$${price}</strong>
+                                </div>
+                                <div class="meta-item">
+                                    <span style="display:block;font-size:0.8rem;color:var(--secondary-color);">Rent / week</span>
+                                    <strong>${hasRent ? '$' + rent : 'N/A'}</strong>
+                                </div>
+                            </div>
+                            <div class="details-description">
+                                <h3 style="margin-bottom:15px;">Synopsis</h3>
+                                <p>${description || 'No description available.'}</p>
+                            </div>
+                            <div class="details-actions">
+                                <button id="btn-buy" class="btn-primary" style="flex:1;padding:18px;" onclick="window.location.href='checkout.html'">
+                                    Buy Now — $${price}
+                                </button>
+                                <button id="btn-rent" class="btn-primary ${hasRent ? '' : 'rent-disabled'}"
+                                    style="flex:1;padding:18px;background-color:var(--accent-color);"
+                                    onclick="window.location.href='cart.html'">
+                                    ${hasRent ? `Rent — $${rent} / week` : 'Rent Unavailable'}
+                                </button>
+                                <button class="qty-btn" style="width:60px;height:60px;" title="Add to Wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div style="margin-top:40px;padding-top:30px;border-top:1px solid var(--border-color);">
+                                <h3 style="margin-bottom:15px;">Seller Information</h3>
+                                <p style="color:var(--secondary-color);">Sold by: <strong>${seller}</strong></p>
+                                <p style="color:var(--secondary-color);">Condition: <strong>${isUsed ? 'Used' : 'Brand New'}</strong></p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = '<div class="error-state">Failed to connect to server.</div>';
+                    toast('Server connection failed', 'error');
+                }
+            };
+            xhr.send();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadBookDetail);
+    </script>
 </body>
 
 </html>
